@@ -17,7 +17,7 @@ public class WordsForLetter {
                 key + ":" + value));
     }
 
-    private static Map<Character, List<String>> createWordsListForKey(Map<Character, List<String>> solution, List<Character> keys, String[] splicedWords) {
+    public static Map<Character, List<String>> createWordsListForKey(Map<Character, List<String>> solution, List<Character> keys, String[] splicedWords) {
         keys.forEach(key -> {
             List<String> words = new ArrayList<>();
             for (String str : splicedWords) {
@@ -31,18 +31,17 @@ public class WordsForLetter {
         return solution;
     }
 
-    private static String[] splitInputIntoWords(String input) {
-        String inputWithoutSpecialCharacters = input.replaceAll("[,;.]", "");
+    public static String[] splitInputIntoWords(String input) {
+        String inputWithoutSpecialCharacters = input.replaceAll("[,;.!@#$%^&*()]", "");
         return inputWithoutSpecialCharacters.split(" ");
     }
 
-    private static List<Character> getKeys(String input) {
+    public static List<Character> getKeys(String input) {
         return input.chars()
                 .filter(Character::isLetter)
                 .distinct()
                 .mapToObj(intToChar -> (char) intToChar)
                 .collect(Collectors.toList());
     }
-
 }
 
